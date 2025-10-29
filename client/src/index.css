@@ -571,6 +571,11 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active::before {
 }
 
 /* Testimonial Swiper Equal Heights */
+.testimonial-swiper {
+  overflow: visible !important;
+  padding-bottom: 0 !important;
+}
+
 .testimonial-swiper .swiper-wrapper {
   align-items: stretch !important;
 }
@@ -587,19 +592,22 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active::before {
 
 /* Testimonial Swiper Pagination */
 .testimonial-swiper .swiper-pagination {
-  display: none !important;
+  display: flex !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  padding-top: 10px !important;
 }
 
 .testimonial-swiper .swiper-pagination-bullet {
   background: #cddff7 !important;
   opacity: 0.6 !important;
-  border: none !important;
+  border: 0 !important;
   border-radius: 50%;
   height: 12px !important;
   width: 12px !important;
   position: relative;
   flex-shrink: 0 !important;
-  outline: none !important;
+  outline: 0 !important;
   outline-width: 0 !important;
   box-shadow: none !important;
   ring: none !important;
@@ -609,30 +617,49 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active::before {
   z-index: 100 !important;
 }
 
-.testimonial-swiper .swiper-pagination-bullet::before,
-.testimonial-swiper .swiper-pagination-bullet::after {
+/* Testimonial pagination - simple dots without rings */
+.testimonial-pagination .swiper-pagination-bullet {
+  background: #d3d3d3 !important;
+  width: 16px !important;
+  height: 16px !important;
+  border-radius: 50% !important;
+  margin: 0 8px !important;
+  opacity: 0.6 !important;
+  box-shadow: none !important;
+  border: none !important;
+  outline: none !important;
+}
+
+.testimonial-pagination .swiper-pagination-bullet:focus,
+.testimonial-pagination .swiper-pagination-bullet:active {
+  box-shadow: 0 0 0 0 transparent !important;
+  outline: 0 !important;
+  border: 0 !important;
+}
+
+/* Remove any pseudo-element ring effects */
+.testimonial-pagination .swiper-pagination-bullet::before,
+.testimonial-pagination .swiper-pagination-bullet::after {
   display: none !important;
 }
 
-.testimonial-swiper .swiper-pagination-bullet:hover {
-  opacity: 0.8 !important;
-  box-shadow: none !important;
+/* Override global Swiper focus ring */
+.swiper-pagination-bullet:focus {
+  box-shadow: 0 0 0 0 transparent !important;
+  outline: 0 !important;
 }
 
-.testimonial-swiper .swiper-pagination-bullet.swiper-pagination-bullet-active {
-  opacity: 1 !important;
+.testimonial-pagination .swiper-pagination-bullet-active {
   background: #0c6e6d !important;
-  box-shadow: none !important;
-}
-
-.testimonial-swiper .swiper-pagination-bullet.swiper-pagination-bullet-active::before,
-.testimonial-swiper .swiper-pagination-bullet.swiper-pagination-bullet-active::after {
-  display: none !important;
+  opacity: 1 !important;
+  box-shadow: 0 0 0 0 transparent !important;
+  border: 0 !important;
+  outline: 0 !important;
 }
 
 .testimonial-swiper .swiper-slide {
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1) !important;
-  opacity: 0.7 !important;
+  opacity: 1 !important;
 }
 
 .testimonial-swiper .swiper-slide.swiper-slide-active {
@@ -645,6 +672,10 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active::before {
   display: flex !important;
   justify-content: center !important;
   align-items: center !important;
+  gap: 8px !important;
+  position: relative !important;
+  z-index: 50 !important;
+  margin-top: -8px !important;
 }
 
 /* Hide testimonial pagination on desktop */
@@ -1230,6 +1261,7 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active::before {
   display: none !important;
 }
 
+
 .service-swiper .swiper-pagination-bullet:hover {
   opacity: 0.8 !important;
   box-shadow: none !important;
@@ -1239,6 +1271,7 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active::before {
   opacity: 1 !important;
   background: #0c6e6d !important;
   box-shadow: none !important;
+  border: none !important;
 }
 
 .service-swiper .swiper-pagination-bullet.swiper-pagination-bullet-active::before,
@@ -1248,7 +1281,7 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active::before {
 
 .service-swiper .swiper-slide {
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1) !important;
-  opacity: 0.7 !important;
+  opacity: 1 !important;
 }
 
 .service-swiper .swiper-slide.swiper-slide-active {

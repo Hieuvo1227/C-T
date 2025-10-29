@@ -8,7 +8,36 @@ import axiosClient from './axiosClient';
  * @returns {Promise}
  */
 export const submitContact = (data) => {
-  return axiosClient.post('/api/contacts', data);
+  // Try POST with URL-encoded first (most compatible with mobile browsers)
+  console.log('📤 Submitting contact form with URL-encoded POST:', data);
+
+  const params = new URLSearchParams();
+  Object.keys(data).forEach(key => {
+    params.append(key, data[key]);
+  });
+
+  return axiosClient.post('/api/contacts', params, {
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+  }).catch(error => {
+    // If URL-encoded fails, try with JSON
+    console.log('⚠️ URL-encoded POST failed, retrying with JSON...');
+
+    return axiosClient.post('/api/contacts', data, {
+      headers: { 'Content-Type': 'application/json' }
+    }).catch(error2 => {
+      // Last resort: FormData POST
+      console.log('⚠️ JSON POST failed, retrying with FormData...');
+
+      const formData = new FormData();
+      Object.keys(data).forEach(key => {
+        formData.append(key, data[key]);
+      });
+
+      return axiosClient.post('/api/contacts', formData, {
+        headers: { 'Content-Type': 'multipart/form-data' }
+      });
+    });
+  });
 };
 
 // ============ ADMIN AUTH API ============

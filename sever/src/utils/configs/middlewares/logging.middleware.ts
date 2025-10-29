@@ -5,11 +5,10 @@ import { ErrorCustom } from "../custom.js";
  * Middleware ghi log các request
  */
 export const requestLogger = (req: Request, res: Response, next: NextFunction) => {
-    // console.log(`${req.method} ${req.path}`);
-    // console.log('Headers:', req.headers);
-    // console.log('Query:', req.query);
-    // console.log('Body:', req.body);
-    // console.log('Cookies:', req.cookies);
+    console.log(`\n📨 ${req.method} ${req.path}`);
+    console.log('📋 Headers:', req.headers);
+    if (Object.keys(req.query).length > 0) console.log('❓ Query:', req.query);
+    if (Object.keys(req.body).length > 0) console.log('📦 Body:', req.body);
     next();
 };
 

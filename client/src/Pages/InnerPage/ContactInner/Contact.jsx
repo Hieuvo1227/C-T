@@ -73,7 +73,9 @@ const Contact = () => {
       }
     } catch (error) {
       console.error('Error:', error);
-      setSubmitMessage(t('contact.errorMessage'));
+      // Show detailed error message
+      const errorMessage = error.response?.data?.message || error.message || t('contact.errorMessage');
+      setSubmitMessage(errorMessage);
     } finally {
       setIsSubmitting(false);
     }
@@ -88,11 +90,11 @@ const Contact = () => {
         />
       </div>
       <div className='Container'>
-        <div className='grid grid-cols-1 lg:grid-cols-2 gap-7 items-center'>
-          <div>
-            <div>
+        <div className='flex flex-col lg:grid lg:grid-cols-2 gap-7 items-center justify-center'>
+          <div className='w-full lg:w-auto'>
+            <div className='text-center'>
               <h5
-                className='font-FiraSans font-medium text-sm sm:text-base text-PrimaryColor-0 uppercase flex items-center gap-2 mb-3 pt-4'
+                className='font-FiraSans font-medium text-sm sm:text-base text-PrimaryColor-0 uppercase flex items-center justify-center gap-2 mb-3 pt-4'
                 data-aos='fade-up'
                 data-aos-duration='800'
               >
@@ -121,7 +123,7 @@ const Contact = () => {
               data-aos-duration='800'
               data-aos-delay='300'
             >
-              <div className='flex items-center gap-5 group border-b border-dashed border-HeadingColor-0 border-opacity-40 pb-5'>
+              <div className='flex items-center gap-5 group border-b border-dashed border-HeadingColor-0 border-opacity-40 py-5'>
                 <div className='size-[70px] bg-white rounded-full flex items-center justify-center text-PrimaryColor-0 transition-all duration-500 group-hover:text-white relative z-10 before:absolute before:left-0 before:top-0 before:size-full before:bg-PrimaryColor-0 before:transition-all before:duration-500 before:scale-0 before:-z-10 before:rounded-full group-hover:before:scale-100'>
                   <FaPhoneAlt size={'20'} />
                 </div>
@@ -149,7 +151,7 @@ const Contact = () => {
                   </a>
                 </div>
               </div>
-              <div className='flex items-center gap-5 group pt-5 pb-2'>
+              <div className='flex items-center gap-5 group py-5'>
                 <div className='size-[70px] bg-white rounded-full flex items-center justify-center text-PrimaryColor-0 transition-all duration-500 group-hover:text-white relative z-10 before:absolute before:left-0 before:top-0 before:size-full before:bg-PrimaryColor-0 before:transition-all before:duration-500 before:scale-0 before:-z-10 before:rounded-full group-hover:before:scale-100'>
                   <IoLocationOutline size={'24'} />
                 </div>
@@ -165,7 +167,7 @@ const Contact = () => {
             </div>
           </div>
           <div
-            className='relative'
+            className='relative w-full lg:w-auto'
             data-aos='fade-up'
             data-aos-duration='800'
             data-aos-delay='400'
@@ -175,12 +177,12 @@ const Contact = () => {
               draggable='false'
               className='absolute top-0 right-6 animate-movebtn'
             />
-            <div className='relative z-20 bg-white shadow-shades pt-16 px-4 sm:px-6 md:px-[50px] lg:px-4 xl:px-10 2xl:px-[50px] rounded-md'>
+            <div className='relative z-20 bg-white shadow-shades pt-16 px-4 sm:px-6 md:px-[50px] lg:px-4 xl:px-10 2xl:px-[50px] rounded-md flex flex-col items-center'>
               <div className='text-center'>
                 <h5 className='font-FiraSans font-medium text-sm sm:text-base text-PrimaryColor-0 uppercase mb-3'>
                   {t('contact.sectionTitle')}
                 </h5>
-                <h1 className='font-FiraSans font-semibold text-HeadingColor-0 inline-block text-[16px] leading-[26px] sm:text-[25px] sm:leading-[35px] md:text-[30px] md:leading-[40px] lg:text-[30px] lg:leading-[44px] xl:text-[32px] xl:leading-[44px] 2xl:text-[34px] 2xl:leading-[44px] relative pb-4'>
+                <h1 className='font-FiraSans font-semibold text-HeadingColor-0 text-[16px] leading-[26px] sm:text-[25px] sm:leading-[35px] md:text-[30px] md:leading-[40px] lg:text-[30px] lg:leading-[44px] xl:text-[32px] xl:leading-[44px] 2xl:text-[34px] 2xl:leading-[44px] relative pb-4'>
                   {t('contact.formTitle')}
                   <img
                     src={border}
@@ -191,10 +193,10 @@ const Contact = () => {
               </div>
               <form
                 onSubmit={handleSubmit}
-                className='flex flex-col gap-y-5 pt-11 pb-[60px]'
+                className='flex flex-col gap-y-5 pt-11 pb-[60px] w-full max-w-2xl'
               >
                 <div className='grid grid-cols-1 sm:grid-cols-2 gap-5'>
-                  <div className='relative inline-block'>
+                  <div className='relative w-full'>
                     <input
                       type='text'
                       name='name'
@@ -210,7 +212,7 @@ const Contact = () => {
                       className='absolute text-PrimaryColor-0 top-1/2 -translate-y-1/2 right-5'
                     />
                   </div>
-                  <div className='relative inline-block'>
+                  <div className='relative w-full'>
                     <input
                       type='email'
                       name='email'
@@ -228,7 +230,7 @@ const Contact = () => {
                   </div>
                 </div>
                 <div className='grid grid-cols-1 sm:grid-cols-2 gap-5'>
-                  <div className='relative inline-block'>
+                  <div className='relative w-full'>
                     <input
                       type='text'
                       name='address'
@@ -244,7 +246,7 @@ const Contact = () => {
                       className='absolute text-PrimaryColor-0 top-1/2 -translate-y-1/2 right-5'
                     />
                   </div>
-                  <div className='relative inline-block'>
+                  <div className='relative w-full'>
                     <input
                       type='text'
                       name='phone'

@@ -75,6 +75,7 @@ const Testimonial = () => {
     pagination: {
       clickable: true,
       el: '.testimonial-pagination',
+      renderBullet: (index, className) => `<span class="${className}"></span>`,
     },
     breakpoints: {
       320: {
@@ -97,7 +98,7 @@ const Testimonial = () => {
   };
 
   return (
-    <section style={{ backgroundImage: `url(/images/testi_bg.png)` }} className='testimonial pt-20 pb-20 bg-no-repeat bg-cover bg-center relative z-10 overflow-hidden'>
+    <section style={{ backgroundImage: `url(/images/testi_bg.png)` }} className='testimonial pt-20 pb-40 bg-no-repeat bg-cover bg-center relative z-10 overflow-hidden'>
       <div className='absolute -z-10 top-24 right-[35%] hidden 2xl:block animate-rotate'>
         <img
           src={serviceShape4}
@@ -191,7 +192,7 @@ const Testimonial = () => {
             </h6>
           </div>
           <div
-            className='col-span-6 lg:col-span-7 mt-10 lg:mt-0 w-full lg:w-auto'
+            className='col-span-6 lg:col-span-7 mt-16 lg:mt-0 w-full lg:w-auto'
             data-aos='fade-left'
             data-aos-duration='1000'
             data-aos-delay='200'
@@ -200,7 +201,7 @@ const Testimonial = () => {
               <Swiper
                 {...settings}
                 modules={[Pagination]}
-                className='testimonial-swiper w-full'
+                className='testimonial-swiper w-full mb-8'
               >
                 <div className='swiper-wrapper' style={{ alignItems: 'stretch' }}>
                   {testiData.map(
@@ -214,8 +215,8 @@ const Testimonial = () => {
                       testiDesc,
                     }) => {
                       return (
-                        <SwiperSlide key={id} style={{ height: 'auto', display: 'flex' }}>
-                          <div className='pb-[52px] w-full flex'>
+                        <SwiperSlide key={id} style={{ height: 'auto', display: 'flex', marginBottom: '20px' }}>
+                          <div className='w-full flex'>
                             <TestimonialCard
                               testiThumb={testiThumb}
                               testiQuote={testiQuote}

@@ -78,12 +78,12 @@ const About = () => {
               />
             </h1>
             <p
-              className='font-FiraSans text-TextColor2-0 pt-6'
+              className='font-FiraSans text-TextColor2-0 pt-6 md:text-left text-justify'
               data-aos='fade-up'
               data-aos-duration='800'
               data-aos-delay='200'
             >
-              <strong className='text-PrimaryColor-0 block mb-2'>{t('about.companyName')}</strong>
+              <strong className='text-PrimaryColor-0 block mb-2 text-center lg:text-left'>{t('about.companyName')}</strong>
               {t('about.description')}
             </p>
 

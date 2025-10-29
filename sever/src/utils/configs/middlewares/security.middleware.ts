@@ -58,9 +58,7 @@ export const injectionGuard = (
 /**
  * Cấu hình CORS
  */
-const ALLOWED_ORIGIN: string[] = [
-    CLIENT_URL,
-];
+const ALLOWED_ORIGIN: string[] = CLIENT_URL.split(',').map(url => url.trim());
 
 const ALLOWED_METHODS: string[] = [
     "GET",
@@ -80,7 +78,10 @@ const ALLOWED_HEADERS: string[] = [
  */
 export const CORSGuard = cors({
     origin: function (origin, callback) {
-        if (!origin || ALLOWED_ORIGIN.includes(origin)) {
+        // Allow all origins for development
+        if (process.env.NODE_ENV === 'development') {
+            callback(null, true);
+        } else if (!origin || ALLOWED_ORIGIN.includes(origin)) {
             callback(null, true);
         } else {
             callback(new Error("This address is not allowed by CORS"));

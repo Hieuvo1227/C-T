@@ -1,3 +1,6 @@
+import dotenv from 'dotenv';
+dotenv.config();
+
 import express from 'express';
 import { PORT } from './utils/configs/constants.js';
 import connectDatabase from './utils/libs/database.js';
@@ -19,6 +22,7 @@ app.use("/api", router);
 // Add error handling middleware AFTER routes
 app.use(errorResponse);
 
-app.listen(PORT, () => {
-  console.log(`Sever đang chạy trên cổng ${PORT}`);
+app.listen(parseInt(PORT), '0.0.0.0', () => {
+  console.log(`🚀 Sever đang chạy trên cổng ${PORT} (0.0.0.0)`);
+  console.log(`📱 Accessible from: http://192.168.100.254:${PORT}`);
 });

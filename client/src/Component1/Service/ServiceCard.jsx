@@ -17,7 +17,7 @@ const ServiceCard = ({
   <div className='service-box rounded-lg shadow-cases bg-white group relative z-10 overflow-hidden p-5 flex flex-col h-full'>
       <div className='relative'>
         {/* fixed responsive thumbnail area to keep cards balanced */}
-        <div className='overflow-hidden h-[180px] sm:h-[220px] md:h-[260px] lg:h-[300px] xl:h-[320px] relative flex-shrink-0'>
+        <div className='overflow-hidden w-full aspect-video sm:h-[220px] md:h-[260px] lg:h-[300px] xl:h-[320px] relative flex-shrink-0'>
           <img
             src={serviceThumb}
             draggable='false'

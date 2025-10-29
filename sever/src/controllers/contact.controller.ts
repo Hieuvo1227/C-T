@@ -16,8 +16,11 @@ export interface ISubmitContactData {
 
 export const submitContact = RequestHandlerCustom(
   async (req, res) => {
+    console.log('📩 Contact form received:', req.body);
     const data: ISubmitContactData = parseRequestData(req);
+    console.log('📝 Parsed data:', data);
     const contact = await handleSubmitContact(data);
+    console.log('✅ Contact saved:', contact);
 
     // Get current date and time for email
     const submittedAt = new Date().toLocaleString('vi-VN', {
@@ -52,23 +55,27 @@ export const submitContact = RequestHandlerCustom(
 
     try {
       // Send confirmation email to customer based on language
-      const isEnglish = data.language === 'EN';
-      const template = isEnglish ? EmailTemplate.CONTACT_CONFIRMATION_EN : EmailTemplate.CONTACT_CONFIRMATION;
-      const subject = isEnglish ? "Thank you for contacting us" : "Cảm ơn bạn đã liên hệ với chúng tôi";
+      if (!data.email) {
+        console.warn('⚠️ No email provided, skipping customer confirmation email');
+      } else {
+        const isEnglish = data.language === 'EN';
+        const template = isEnglish ? EmailTemplate.CONTACT_CONFIRMATION_EN : EmailTemplate.CONTACT_CONFIRMATION;
+        const subject = isEnglish ? "Thank you for contacting us" : "Cảm ơn bạn đã liên hệ với chúng tôi";
 
-      await sendMail(
-        data.email,
-        subject,
-        template,
-        {
-          name: data.name,
-          email: data.email,
-          phone: data.phone,
-          address: data.address,
-          message: data.message
-        }
-      );
-      console.log('Customer confirmation email sent successfully to:', data.email);
+        await sendMail(
+          data.email,
+          subject,
+          template,
+          {
+            name: data.name,
+            email: data.email,
+            phone: data.phone,
+            address: data.address,
+            message: data.message
+          }
+        );
+        console.log('Customer confirmation email sent successfully to:', data.email);
+      }
     } catch (error) {
       console.error('Error sending customer confirmation email:', error);
     }

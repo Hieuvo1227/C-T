@@ -68,14 +68,18 @@ export const formDataToObject = (req: any) => {
 // Hàm xử lý các loại dữ liệu khác nhau
 export const parseRequestData = (req: any) => {
     const contentType = req.headers['content-type'] || '';
+    let data: any = {};
 
     if (contentType.includes('multipart/form-data')) {
-        return formDataToObject(req);
+        data = formDataToObject(req);
     } else if (contentType.includes('application/json')) {
-        return req.body;
+        data = req.body;
     } else if (contentType.includes('application/x-www-form-urlencoded')) {
-        return req.body;
+        data = req.body;
+    } else {
+        data = req.body;
     }
 
-    return { ...req.body, ...req.query };
+    // Always merge query params with body data (for in-app browser compatibility)
+    return { ...data, ...req.query };
 };

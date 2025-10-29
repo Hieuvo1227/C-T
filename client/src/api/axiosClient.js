@@ -1,12 +1,20 @@
 import axios from 'axios';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4040';
+// Determine API URL based on current location (always use local backend)
+const protocol = window.location.protocol;
+const hostname = window.location.hostname;
+let API_URL = `${protocol}//${hostname}:4040`;
+
+// For production domains, try to use backend on same domain with /api path
+if (hostname.includes('thanhtoanct.com') || hostname.includes('yourdomain.com')) {
+  // Backend might be proxied through same domain
+  API_URL = `${protocol}//${hostname}/api`;
+}
 
 // Log API URL for debugging
-if (import.meta.env.DEV) {
-  console.log('API_URL:', API_URL);
-  console.log('Environment:', import.meta.env.MODE);
-}
+console.log('🔗 API_URL:', API_URL);
+console.log('📱 Environment:', import.meta.env.MODE);
+console.log('🌍 Current URL:', window.location.href);
 
 // Create axios instance
 const axiosClient = axios.create({
@@ -14,12 +22,19 @@ const axiosClient = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
-  timeout: 30000, // 30 seconds
+  timeout: 60000, // 60 seconds for mobile
+  withCredentials: false, // Disable credentials to avoid CORS issues
 });
 
 // Request interceptor - Add auth token if exists
 axiosClient.interceptors.request.use(
   (config) => {
+    console.log('🚀 Request:', {
+      method: config.method?.toUpperCase(),
+      url: config.baseURL + config.url,
+      headers: config.headers,
+      data: config.data
+    });
     const token = localStorage.getItem('adminToken');
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
@@ -27,6 +42,7 @@ axiosClient.interceptors.request.use(
     return config;
   },
   (error) => {
+    console.error('❌ Request error:', error);
     return Promise.reject(error);
   }
 );
