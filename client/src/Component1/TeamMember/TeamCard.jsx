@@ -17,7 +17,7 @@ const TeamCard = ({
   return (
     <div className='group relative bg-white dark:bg-gray-800 rounded-md shadow-lg overflow-hidden before:absolute before:top-0 before:left-0 before:w-full before:h-0 before:bg-BodyBg4-0 dark:before:bg-gray-700 before:-z-10 before:transition-all before:rounded-md before:duration-500 hover:before:h-full min-h-[340px] flex flex-col'>
       <div className='relative z-20 overflow-hidden rounded before:absolute before:top-0 before:left-0 before:bg-right-top before:bg-PrimaryColor-0 before:bg-opacity-30 before:w-0 before:h-0 before:transition-all before:duration-500 before:z-10 group-hover:before:h-full group-hover:before:w-full'>
-        <div className='flex justify-center pt-8'>
+        <div className='flex justify-center pt-16 sm:pt-20 md:pt-24'>
           <img
             src={teamThumb}
             alt={teamTitle}
