@@ -21,7 +21,7 @@ const TeamCard = ({
           <img
             src={teamThumb}
             alt={teamTitle}
-            className='w-32 h-32 sm:w-36 sm:h-36 md:w-44 md:h-44 rounded-xl object-cover shadow-md'
+            className='w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-xl object-cover shadow-md'
           />
         </div>
         <div className='absolute z-30 top-5 right-5'>
