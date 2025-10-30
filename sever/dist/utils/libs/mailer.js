@@ -1,0 +1,82 @@
+import { EMAIL_PASS, EMAIL_USER } from "../configs/constants.js";
+import { HandlerCustom } from "../configs/custom.js";
+import nodemailer from 'nodemailer';
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+export var EmailTemplate;
+(function (EmailTemplate) {
+    EmailTemplate["SEND_OTP"] = "../templates/sendOTP.html";
+    EmailTemplate["WELCOME"] = "../templates/welcome.html";
+    EmailTemplate["RESET_PASSWORD"] = "../templates/resetPassword.html";
+    EmailTemplate["CONTACT_CONFIRMATION"] = "../templates/contactConfirmation.html";
+    EmailTemplate["CONTACT_CONFIRMATION_EN"] = "../templates/contactConfirmationEN.html";
+    EmailTemplate["SEND_PASSWORD"] = "../templates/sendPassword.html";
+    EmailTemplate["ADMIN_NOTIFICATION"] = "../templates/adminNotification.html";
+})(EmailTemplate || (EmailTemplate = {}));
+export const sendMail = HandlerCustom(async (to, subject, template, templateData = {}) => {
+    // Get the directory path in ES modules
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = dirname(__filename);
+    let html = fs.readFileSync(path.join(__dirname, template), "utf-8");
+    // Replace all placeholders with their values
+    if (Array.isArray(templateData)) {
+        templateData.forEach(([key, value]) => {
+            const regex = new RegExp(`{{${key}}}`, 'g');
+            html = html.replace(regex, String(value));
+        });
+    }
+    else {
+        // Nếu templateData là object
+        Object.entries(templateData).forEach(([key, value]) => {
+            const regex = new RegExp(`{{${key}}}`, 'g');
+            html = html.replace(regex, String(value));
+        });
+    }
+    // Simple conditional logic replacement for {{#if value}}content{{/if}}
+    const conditionalRegex = /{{#if\s+([^}]+)}}([\s\S]*?){{\/if}}/g;
+    html = html.replace(conditionalRegex, (match, condition, content) => {
+        let value;
+        if (Array.isArray(templateData)) {
+            // Tìm giá trị trong mảng tuple
+            const tupleItem = templateData.find(([k]) => k === condition);
+            value = tupleItem ? tupleItem[1] : null;
+        }
+        else {
+            // Lấy giá trị từ object
+            value = templateData[condition];
+        }
+        return value ? content : '';
+    });
+    const transporter = nodemailer.createTransport({
+        host: 'smtp.gmail.com',
+        port: 465,
+        secure: true,
+        auth: {
+            user: EMAIL_USER,
+            pass: EMAIL_PASS
+        }
+    });
+    const mailOptions = {
+        from: `STL Solution <${EMAIL_USER}>`,
+        to,
+        subject,
+        html
+    };
+    try {
+        console.log(`[EMAIL] Sending email to: ${to} from: ${EMAIL_USER}`);
+        const result = await transporter.sendMail(mailOptions);
+        console.log(`[EMAIL] Email sent successfully to ${to}:`, result.response);
+    }
+    catch (emailError) {
+        const errorMessage = emailError instanceof Error ? emailError.message : String(emailError);
+        console.error(`[EMAIL] Error sending email to ${to}:`, errorMessage);
+        throw emailError;
+    }
+    return {
+        success: true,
+        status: 200,
+        message: "Email sent successfully"
+    };
+});
