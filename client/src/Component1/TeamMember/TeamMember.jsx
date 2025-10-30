@@ -1,0 +1,247 @@
+import TeamCard from './TeamCard';
+import teamThumb from '/images/members/ceo.png';
+import teamThumb2 from '/images/members/engineer.png';
+import teamThumb3 from '/images/members/it.png';
+import teamThumb4 from '/images/members/sales.png';
+import teamThumb5 from '/images/members/staff.png';
+import teamShape from '/images/team-dot.png';
+import circleShape from '/images/team_rotate.png';
+import border from '/images/hero_border.png';
+import aboutShape from '/images/about_shape_3.png';
+import serviceShape2 from '/images/tir.png';
+import { FaFacebookF, FaLinkedinIn, FaXTwitter,} from 'react-icons/fa6';
+import { GoShareAndroid } from 'react-icons/go';
+import { useLanguage } from '../../contexts/LanguageContext';
+import { getTranslation } from '../../utils/translations';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/pagination';
+
+const teamData = [
+  {
+    id: 1,
+    teamThumb: teamThumb,
+    teamTitle: 'Dr. VO DINH TUNG',
+    teamShare: <GoShareAndroid />,
+    socialIcon: <FaFacebookF />,
+    socialIcon2: <FaXTwitter />,
+    socialIcon3: <FaLinkedinIn />,
+    teamDesc: 'CEO',
+    teamShape: teamShape,
+    facebookUrl: 'https://www.facebook.com/profile.php?id=61571026593304',
+    twitterUrl: 'https://twitter.com',
+    linkedinUrl: 'https://www.linkedin.com',
+  },
+  {
+    id: 2,
+    teamThumb: teamThumb2,
+    teamTitle: 'Dr. LE QUANG DUC',
+    teamShare: <GoShareAndroid />,
+    socialIcon: <FaFacebookF />,
+    socialIcon2: <FaXTwitter />,
+    socialIcon3: <FaLinkedinIn />,
+    teamDesc: 'Head of Engineering',
+    teamShape: teamShape,
+    facebookUrl: 'https://www.facebook.com/profile.php?id=61571026593304',
+    twitterUrl: 'https://twitter.com',
+    linkedinUrl: 'https://www.linkedin.com',
+  },
+  {
+    id: 3,
+    teamThumb: teamThumb3,
+    teamTitle: 'Kim Do Kyong',
+    teamShare: <GoShareAndroid />,
+    socialIcon: <FaFacebookF />,
+    socialIcon2: <FaXTwitter />,
+    socialIcon3: <FaLinkedinIn />,
+    teamDesc: 'IT Expert',
+    teamShape: teamShape,
+    facebookUrl: 'https://www.facebook.com/profile.php?id=61571026593304',
+    twitterUrl: 'https://twitter.com',
+    linkedinUrl: 'https://www.linkedin.com',
+  },
+  {
+    id: 4,
+    teamThumb: teamThumb4,
+    teamTitle: 'DANG DUC HUY',
+    teamShare: <GoShareAndroid />,
+    socialIcon: <FaFacebookF />,
+    socialIcon2: <FaXTwitter />,
+    socialIcon3: <FaLinkedinIn />,
+    teamDesc: 'Head of Sales',
+    teamShape: teamShape,
+    facebookUrl: 'https://www.facebook.com/profile.php?id=61571026593304',
+    twitterUrl: 'https://twitter.com',
+    linkedinUrl: 'https://www.linkedin.com',
+  },
+  {
+    id: 5,
+    teamThumb: teamThumb5,
+    teamTitle: 'NGO DANG KHOA',
+    teamShare: <GoShareAndroid />,
+    socialIcon: <FaFacebookF />,
+    socialIcon2: <FaXTwitter />,
+    socialIcon3: <FaLinkedinIn />,
+    teamDesc: 'Sales Staff',
+    teamShape: teamShape,
+    facebookUrl: 'https://www.facebook.com/profile.php?id=61571026593304',
+    twitterUrl: 'https://twitter.com',
+    linkedinUrl: 'https://www.linkedin.com',
+  },
+];
+
+const TeamMember = () => {
+  const { currentLanguage } = useLanguage();
+  const t = (key) => getTranslation(currentLanguage, key);
+
+  return (
+    <section
+      className='pt-20 pb-20 relative z-10'
+    >
+      <div className='absolute -z-10 top-10 left-1/2 -translate-x-1/2'>
+        <img
+          src={circleShape}
+          draggable='false'
+          className='max-w-[inherit] w-[inherit]'
+        />
+      </div>
+      <div className='Container'>
+        <div className='text-center'>
+          <h5
+            className='font-FiraSans font-medium text-sm sm:text-base text-PrimaryColor-0 dark:text-green-400 uppercase mb-3'
+            data-aos='fade-up'
+            data-aos-duration='800'
+          >
+            {t('team.sectionTitle')}
+          </h5>
+          <h1
+            className='font-FiraSans font-semibold text-HeadingColor-0 dark:text-white inline-block text-[20px] leading-[30px] sm:text-[25px] sm:leading-[35px] md:text-[30px] md:leading-[40px] lg:text-[34px] lg:leading-[44px] xl:text-[40px] xl:leading-[50px] 2xl:text-[42px] 2xl:leading-[52px] relative pb-4'
+            data-aos='fade-up'
+            data-aos-duration='800'
+            data-aos-delay='100'
+          >
+            {t('team.title')}
+            <img
+              src={border}
+              draggable='false'
+              className='absolute bottom-0 left-1/2 -translate-x-1/2'
+            />
+          </h1>
+          <img
+            src={aboutShape}
+            draggable='false'
+            className='absolute -z-10 top-32 right-10 xl:right-80  animate-dance3 hidden md:block'
+          />
+
+          <div className='absolute -z-10 top-36 left-[22%] hidden 2xl:block animate-rotate'>
+            <img
+              src={serviceShape2}
+              draggable='false'
+            />
+          </div>
+        </div>
+        {/* Mobile Swiper */}
+        <div className='md:hidden mt-16'>
+          <Swiper
+            spaceBetween={20}
+            slidesPerView={1}
+            pagination={{
+              clickable: true,
+            }}
+            modules={[Pagination]}
+            className='team-swiper'
+            speed={800}
+            data-aos='fade-up'
+            data-aos-duration='1000'
+            data-aos-delay='200'
+          >
+            {teamData.map(
+              ({
+                id,
+                teamThumb,
+                teamTitle,
+                teamShare,
+                socialIcon,
+                socialIcon2,
+                socialIcon3,
+                socialIcon4,
+                teamDesc,
+                facebookUrl,
+                twitterUrl,
+                linkedinUrl,
+              }) => {
+                return (
+                  <SwiperSlide key={id}>
+                    <div className="h-full flex justify-center">
+                      <TeamCard
+                        teamThumb={teamThumb}
+                        teamTitle={teamTitle}
+                        teamShare={teamShare}
+                        socialIcon={socialIcon}
+                        socialIcon2={socialIcon2}
+                        socialIcon3={socialIcon3}
+                        socialIcon4={socialIcon4}
+                        teamDesc={teamDesc}
+                        teamShape={teamShape}
+                        facebookUrl={facebookUrl}
+                        twitterUrl={twitterUrl}
+                        linkedinUrl={linkedinUrl}
+                      />
+                    </div>
+                  </SwiperSlide>
+                );
+              }
+            )}
+          </Swiper>
+        </div>
+
+        {/* Desktop Grid */}
+        <div
+          className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 mt-16"
+          data-aos='fade-up'
+          data-aos-duration='1000'
+          data-aos-delay='200'
+        >
+          {teamData.map(
+            ({
+              id,
+              teamThumb,
+              teamTitle,
+              teamShare,
+              socialIcon,
+              socialIcon2,
+              socialIcon3,
+              socialIcon4,
+              teamDesc,
+              facebookUrl,
+              twitterUrl,
+              linkedinUrl,
+            }) => {
+              return (
+                <div key={id} className="h-full">
+                  <TeamCard
+                    teamThumb={teamThumb}
+                    teamTitle={teamTitle}
+                    teamShare={teamShare}
+                    socialIcon={socialIcon}
+                    socialIcon2={socialIcon2}
+                    socialIcon3={socialIcon3}
+                    socialIcon4={socialIcon4}
+                    teamDesc={teamDesc}
+                    teamShape={teamShape}
+                    facebookUrl={facebookUrl}
+                    twitterUrl={twitterUrl}
+                    linkedinUrl={linkedinUrl}
+                  />
+                </div>
+              );
+            }
+          )}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default TeamMember;
