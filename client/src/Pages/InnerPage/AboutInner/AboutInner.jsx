@@ -29,7 +29,7 @@ const getSolutionsData = (language) => {
         description: 'Giải pháp dành cho các căn tin trong trường học',
         image: '/images/solutions/cantin.jpg',
         details: [
-          'Hệ thống thanh toán không tiềp xúc',
+          'Hệ thống thanh toán không tiếp xúc',
           'Quản lý thực đơn',
           'Báo cáo doanh thu tự động',
           'Tích hợp thẻ học sinh'
@@ -111,6 +111,33 @@ const getSolutionsData = (language) => {
           'Giảm thiểu tối đa chi phí không cần thiết.',
           'Xây dựng được hệ thống thông minh dành cho doanh nghiệp, nhà máy, cơ sở của bạn. ',
           'Chi phí giảm đến con số 10-15%.'
+        ]
+      },
+      {
+        id: 9,
+        slug: 'thiet-bi-doc-cccd',
+        title: 'Giải pháp thiết bị đọc CCCD',
+        description: 'Sự lựa chọn thông minh tiết kiệm thời gian, chi phí và nhân lực',
+        image: '/images/solutions/cccd.jpg',
+        details: [
+          'Sự lựa chọn thông minh tiết kiệm thời gian, chi phí và nhân lực',
+          'Ứng dụng thực tế dành cho những địa điểm đông người',
+          'Với tính năng đọc thẻ hoàn hảo, hiển thị thông tin rõ ràng',
+          'Cung cấp thời gian, thông tin thực',
+          'Giải pháp hàng đầu của chúng tôi'
+        ]
+      },
+      {
+        id: 10,
+        slug: 'can-dinh-luong-nha-may',
+        title: 'Giải pháp Cân định lượng dành cho nhà máy',
+        description: 'Kết hợp tính toán chính xác và giám sát từ xa; ứng dụng trong công nghiệp, nông nghiệp, dịch vụ.',
+        image: '/images/solutions/dien2.jpg',
+        details: [
+          'Sự kết hợp hoàn hảo giữa khả năng tính toán chính xác và giám sát từ xa.',
+          'Hệ thống cân định lượng dành cho nhà máy là một công nghệ tuyệt vời.',
+          'Ứng dụng vào công nghiệp, nông nghiệp, dịch vụ...',
+          'Dù bạn ở bất cứ đâu cũng có thể dễ dàng kiểm soát số liệu thực.'
         ]
       },
     ],
@@ -211,12 +238,39 @@ const getSolutionsData = (language) => {
         slug: 'tiet-kiem-dien',
         title: 'AI Integrated Electricity Saving System',
         description: 'Save energy effectively with AI technology',
-        image: '/images/solutions/dien1.jpg',
+        image: '/images/solutions/can1.jpg',
         details: [
           'Predictable electricity consumption at peak times',
           'Minimize unnecessary costs.',
           'Build smart systems for your business, factory, and facility.',
           'Cost reduction up to 10-15%.'
+        ]
+      },
+      {
+        id: 9,
+        slug: 'thiet-bi-doc-cccd',
+        title: 'Citizen ID Card Reading Device Solution',
+        description: 'Smart choice that saves time, cost and manpower',
+        image: '/images/solutions/cccd.jpg',
+        details: [
+          'Smart choice that saves time, cost and manpower',
+          'Practical application for crowded places',
+          'With perfect card reading feature, clear information display',
+          'Provide real-time information',
+          'Our leading solution'
+        ]
+      },
+      {
+        id: 10,
+        slug: 'can-dinh-luong-nha-may',
+        title: 'Industrial Weighing Solution',
+        description: 'Perfect combination of precise calculation and remote monitoring; applicable to industry, agriculture, and services.',
+        image: '/images/solutions/dien2.jpg',
+        details: [
+          'Perfect blend of precise calculation and remote monitoring.',
+          'A powerful factory weighing technology.',
+          'Applicable to industry, agriculture, services...',
+          'Control real-world metrics from anywhere.'
         ]
       },
     ]
@@ -302,7 +356,9 @@ const AboutInner = () => {
               {currentSolutions.map((solution, index) => (
                 <div
                   key={solution.id}
-                  className='bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group flex flex-col h-full'
+                  className={`bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group flex flex-col h-full ${
+                    currentPage === totalPages && currentSolutions.length === 1 ? 'lg:col-start-2' : ''
+                  }`}
                   data-aos='fade-up'
                   data-aos-duration='800'
                   data-aos-delay={300 + (index * 100)}

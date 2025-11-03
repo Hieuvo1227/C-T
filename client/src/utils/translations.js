@@ -26,7 +26,7 @@ export const translations = {
       subtitle: 'GIỚI THIỆU',
       title: 'VỀ CHÚNG TÔI',
       companyName: 'Công Ty TNHH Điện Tử C&T',
-      description: 'C&T Electronics Co., Ltd là một doanh nghiệp khoa học công nghệ hoạt động trong lĩnh vực giao dịch thanh toán tự động. Giải pháp số hóa đa năng cho giao dịch tự động của chúng tôi hoàn thành sứ mệnh: "Bạn chỉ cần chạm, việc còn lại chúng tôi lo". Tầm nhìn của chúng tôi là trở thành một trong những công ty hàng đầu tại Việt Nam cung cấp các giải pháp số hóa đa năng linh hoạt.',
+      description: 'C&T Electronics Co., Ltd là một doanh nghiệp khoa học công nghệ hoạt động trong lĩnh vực giao dịch thanh toán tự động và IOT. Giải pháp số hóa đa năng cho giao dịch tự động của chúng tôi hoàn thành sứ mệnh: "Bạn chỉ cần chạm, việc còn lại chúng tôi lo". Tầm nhìn của chúng tôi là trở thành một trong những công ty hàng đầu tại Việt Nam cung cấp các giải pháp số hóa đa năng linh hoạt.',
     },
     // Footer
     footer: {
@@ -74,7 +74,9 @@ export const translations = {
       automaticTransaction: 'Giao dịch tự động',
       comprehensiveSolution: 'Cung cấp giải pháp',
       smartConnect: 'Kết nối hệ thống',
-      professionalTeam: 'Chuyên đội tinh hoạt',
+      professionalTeam: 'Chuyên đội linh hoạt',
+      identitySolutions: 'Các giải pháp định danh',
+      iotBreakthrough: 'Giải Pháp IoT đột phá',
     },
     // Team
     team: {
@@ -136,6 +138,14 @@ export const translations = {
       busTicketing: 'Bến xe, hãng vận tải hành khách',
       ecommerce: 'Website bán hàng',
       companyIntegration: 'Công ty tổng',
+      cccdReader: 'Giải pháp thiết bị đọc CCCD',
+      cccdReaderTitle: 'Giải pháp thiết bị đọc CCCD',
+      cccdReaderDesc: 'Sự lựa chọn thông minh tiết kiệm thời gian, chi phí và nhân lực',
+      cccdReaderFeature1: 'Sự lựa chọn thông minh tiết kiệm thời gian, chi phí và nhân lực',
+      cccdReaderFeature2: 'Ứng dụng thực tế dành cho những địa điểm đông người',
+      cccdReaderFeature3: 'Với tính năng đọc thẻ hoàn hảo, hiển thị thông tin rõ ràng',
+      cccdReaderFeature4: 'Cung cấp thời gian, thông tin thực',
+      cccdReaderFeature5: 'Giải pháp hàng đầu của chúng tôi',
     },
     // Counter/Stats
     counter: {
@@ -285,6 +295,8 @@ export const translations = {
       comprehensiveSolution: 'Comprehensive solutions',
       smartConnect: 'System integration',
       professionalTeam: 'Professional team',
+      identitySolutions: 'Identity solutions',
+      iotBreakthrough: 'Breakthrough IoT solutions',
     },
     // Team
     team: {
@@ -346,6 +358,14 @@ export const translations = {
       busTicketing: 'Bus station, passenger transport',
       ecommerce: 'E-commerce website',
       companyIntegration: 'Corporate integration',
+      cccdReader: 'CCCD Reader Device Solution',
+      cccdReaderTitle: 'CCCD Reader Device Solution',
+      cccdReaderDesc: 'Smart choice that saves time, cost and manpower',
+      cccdReaderFeature1: 'Smart choice that saves time, cost and manpower',
+      cccdReaderFeature2: 'Practical application for crowded locations',
+      cccdReaderFeature3: 'With perfect card reading feature, clear information display',
+      cccdReaderFeature4: 'Provide real-time information',
+      cccdReaderFeature5: 'Our leading solution',
     },
     // Counter/Stats
     counter: {
